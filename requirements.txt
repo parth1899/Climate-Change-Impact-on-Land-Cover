@@ -1,0 +1,5 @@
+flask
+numpy
+geemap
+python-dotenv
+Flask-Cors
