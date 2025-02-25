@@ -2,4 +2,5 @@ venv
 .env
 __pycache__
 private_key.json
-
+.vs
+*.geojson
