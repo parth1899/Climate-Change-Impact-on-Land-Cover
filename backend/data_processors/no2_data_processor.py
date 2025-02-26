@@ -27,7 +27,7 @@ class NO2DataProcessor:
             'TILE_SCALE': 4,
         }
         
-        self.GEOJSON_PATH = 'Boundaries/stateBoundaries.geojson'
+        self.GEOJSON_PATH = 'boundaries/datasets/maharashtra_districts.geojson'
         
         # Define NO2 concentration thresholds (in mol/m^2)
         # Using large number instead of infinity for Earth Engine compatibility
@@ -51,7 +51,7 @@ class NO2DataProcessor:
             
             region_feature = next(
                 (feature for feature in geojson_data['features'] 
-                if feature['properties']['shapeName'] == region),
+                if feature['properties']['shapeName_1'] == region),
                 None
             )
             

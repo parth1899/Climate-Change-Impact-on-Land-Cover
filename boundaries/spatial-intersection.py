@@ -1,10 +1,10 @@
 import geopandas as gpd
 
 # Load the districts GeoJSON
-districts = gpd.read_file("geoBoundaries-IND-ADM2.geojson")
+districts = gpd.read_file("datasets\\geoBoundaries-IND-ADM2.geojson")
 
 # Load Maharashtra boundary GeoJSON
-maharashtra_boundary = gpd.read_file("maharashtra_boundary.geojson")
+maharashtra_boundary = gpd.read_file("datasets\\maharashtra_boundary.geojson")
 
 # Ensure both layers have the same CRS (Coordinate Reference System)
 districts = districts.to_crs(maharashtra_boundary.crs)
@@ -13,6 +13,6 @@ districts = districts.to_crs(maharashtra_boundary.crs)
 maharashtra_districts = gpd.overlay(districts, maharashtra_boundary, how="intersection")
 
 # Save the result as a new GeoJSON file
-maharashtra_districts.to_file("maharashtra_districts.geojson", driver="GeoJSON")
+maharashtra_districts.to_file("datasets\\maharashtra_districts.geojson", driver="GeoJSON")
 
-print("Maharashtra districts extracted and saved to maharashtra_districts.geojson")
+print("Maharashtra districts extracted and saved to datasets/maharashtra_districts.geojson")

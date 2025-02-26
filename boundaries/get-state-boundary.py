@@ -1,24 +1,24 @@
 import json
 
 # Load the GeoJSON file
-with open("geoBoundaries-IND-ADM1 (1).geojson", "r", encoding="utf-8") as f:
+with open("datasets/geoBoundaries-IND-ADM2.geojson", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 # Filter Maharashtra boundary
-maharashtra_boundary = [
+pune_boundary = [
     feature for feature in data["features"]
-    if feature["properties"]["shapeName"] == "Maharashtra" or feature["properties"]["shapeISO"] == "IN-MH"
+    if feature["properties"]["shapeName"] == "Pune"
 ]
 
 # Create a new GeoJSON structure
-maharashtra_geojson = {
+pune_geojson = {
     "type": "FeatureCollection",
     "crs": data["crs"],  # Keep the same CRS
-    "features": maharashtra_boundary
+    "features": pune_boundary
 }
 
 # Save to a new GeoJSON file
-with open("maharashtra_boundary.geojson", "w", encoding="utf-8") as f:
-    json.dump(maharashtra_geojson, f, indent=4)
+with open("pune_boundary.geojson", "w", encoding="utf-8") as f:
+    json.dump(pune_geojson, f, indent=4)
 
-print("Maharashtra boundary saved to maharashtra_boundary.geojson")
+print("Pune boundary saved to pune_geojson.geojson")

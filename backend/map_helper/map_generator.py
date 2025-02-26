@@ -116,7 +116,7 @@ def generate_no2_maps(
     selected_years, 
     selected_classes, 
     region_name, 
-    geojson_path='Boundaries/stateBoundaries.geojson'
+    geojson_path='boundaries/datasets/maharashtra_districts.geojson'
 ):
     """
     Main function to generate NO2 maps

@@ -15,7 +15,7 @@ def generate_maps():
     selected_years = data.get('selected_years', [])
     selected_classes = data.get('selected_classes', [])
     region_name = data.get('region_name', '')
-    geojson_path = 'Boundaries/stateBoundaries.geojson'
+    geojson_path = 'boundaries/datasets/maharashtra_districts.geojson'
 
     data_processor = NO2DataProcessor({
         'years': selected_years,
@@ -27,16 +27,17 @@ def generate_maps():
 
     print(df)
     
-    try:
-        result = generate_no2_maps(
-            selected_years=selected_years, 
-            selected_classes=selected_classes,
-            region_name=region_name,
-            geojson_path=geojson_path
-        )
-        return jsonify(result)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+    return "Success"
+    # try:
+    #     result = generate_no2_maps(
+    #         selected_years=selected_years, 
+    #         selected_classes=selected_classes,
+    #         region_name=region_name,
+    #         geojson_path=geojson_path
+    #     )
+    #     return jsonify(result)
+    # except Exception as e:
+    #     return jsonify({"error": str(e)}), 500
 
 @app.route('/')
 def index():
