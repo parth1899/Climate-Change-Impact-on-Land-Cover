@@ -8,15 +8,15 @@ from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta  # for generating monthly intervals
 from config import initialize_earth_engine
 
-class CODataProcessor:
+class O3DataProcessor:
     def __init__(self, params: Dict[str, Any]):
         """
-        Initialize CODataProcessor with parameters.
+        Initialize O3DataProcessor with parameters.
         
         Args:
             params (Dict[str, Any]): Dictionary containing:
-                - start_date (str): Start date in YYYY-MM-DD format
-                - end_date (str): End date in YYYY-MM-DD format
+                - start_date (str): Start date in ISO format (e.g., 'YYYY-MM-DDTHH:MM:SSZ')
+                - end_date (str): End date in ISO format (e.g., 'YYYY-MM-DDTHH:MM:SSZ')
                 - geojson_path (str): Path to GeoJSON file with district boundaries
         """
         # Initialize Earth Engine
@@ -24,20 +24,21 @@ class CODataProcessor:
         
         self.params = params
         self.CONFIG = {
-            'CO_COLLECTION': 'COPERNICUS/S5P/NRTI/L3_CO',
-            'SCALE': 1000,  # meters
+            'O3_COLLECTION': 'COPERNICUS/S5P/NRTI/L3_O3',
+            'SCALE': 1113,  # meters; using pixel size ~1113.2 meters for O3 data
             'MAX_PIXELS': 1e13,
             'TILE_SCALE': 4,
         }
         
         self.GEOJSON_PATH = params.get('geojson_path', '../boundaries/datasets/maharashtra_districts.geojson')
         
-        # Define bands to extract
+        # Define bands to extract for the O3 dataset
         self.BANDS = [
-            'CO_column_number_density',
-            'H2O_column_number_density',
-            'cloud_height',
-            'sensor_altitude',
+            'O3_column_number_density',
+            'O3_column_number_density_amf',
+            'O3_slant_column_number_density',
+            'O3_effective_temperature',
+            'cloud_fraction',
             'sensor_azimuth_angle',
             'sensor_zenith_angle',
             'solar_azimuth_angle',
@@ -45,7 +46,7 @@ class CODataProcessor:
         ]
     
     def _load_districts(self) -> List[Dict]:
-        """Load all districts from GeoJSON file"""
+        """Load all districts from the GeoJSON file."""
         try:
             with open(self.GEOJSON_PATH, 'r') as f:
                 geojson_data = json.load(f)
@@ -75,14 +76,14 @@ class CODataProcessor:
         except Exception as e:
             raise ValueError(f"Error loading districts: {str(e)}")
     
-    def _get_co_data_for_interval(self, district: Dict, interval_start: str, interval_end: str) -> Dict:
+    def _get_o3_data_for_interval(self, district: Dict, interval_start: str, interval_end: str) -> Dict:
         """
-        Get a composite CO measurement for a district over a given time interval.
+        Get a composite O₃ measurement for a district over a given time interval.
         
         Args:
             district (Dict): A dictionary with 'name' and 'geometry' for the district.
-            interval_start (str): Start date (YYYY-MM-DD) for the interval.
-            interval_end (str): End date (YYYY-MM-DD) for the interval.
+            interval_start (str): Start date (ISO format) for the interval.
+            interval_end (str): End date (ISO format) for the interval.
             
         Returns:
             Dict: A dictionary with measurement details.
@@ -91,8 +92,8 @@ class CODataProcessor:
             ee_start = ee.Date(interval_start)
             ee_end = ee.Date(interval_end)
             
-            # Filter collection to the interval and select bands
-            collection = ee.ImageCollection(self.CONFIG['CO_COLLECTION']) \
+            # Filter the collection to the interval and select the specified bands
+            collection = ee.ImageCollection(self.CONFIG['O3_COLLECTION']) \
                 .filterDate(ee_start, ee_end) \
                 .select(self.BANDS)
             
@@ -116,7 +117,7 @@ class CODataProcessor:
                 'district_name': district['name'],
                 'measurement_id': measurement_id,
                 'timestamp': timestamp,
-                'dataset': 'Sentinel-5P NRTI CO'
+                'dataset': 'Sentinel-5P NRTI O3'
             }
             
             # Add each band value to the result
@@ -125,41 +126,16 @@ class CODataProcessor:
                 
             return result
         except Exception as e:
-            print(f"Error getting CO data for {district['name']} in interval {interval_start} - {interval_end}: {str(e)}")
+            print(f"Error getting O₃ data for {district['name']} in interval {interval_start} - {interval_end}: {str(e)}")
             return {}
     
     def process_data(self) -> pd.DataFrame:
-        """Process CO data for all districts over monthly intervals and return a DataFrame."""
+        """Process O₃ data for all districts over weekly intervals and return a DataFrame."""
         try:
-            # start_date_str = self.params.get('start_date', '2020-01-01')
-            # end_date_str = self.params.get('end_date', '2020-12-31')
+            # start_date_str = self.params.get('start_date', '2018-07-10T11:02:44Z')
+            # end_date_str = self.params.get('end_date', '2025-02-25T08:56:13Z')
             
-            # Generate monthly intervals between start and end dates
-            # start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-            # end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
-            # intervals = []
-            # current = start_date
-            # while current < end_date:
-            #     next_interval = current + relativedelta(months=1)
-            #     # Ensure the interval end does not go past the overall end_date
-            #     interval_end = min(next_interval, end_date)
-            #     intervals.append((current.strftime('%Y-%m-%d'), interval_end.strftime('%Y-%m-%d')))
-            #     current = next_interval
-            
-            # Generate two-day intervals between start and end dates
-            # start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
-            # end_date = datetime.strptime(end_date_str, '%Y-%m-%d')
-            # intervals = []
-            # current = start_date
-            # while current < end_date:
-            #     next_interval = current + timedelta(days=2)
-            #     # Ensure the interval end does not go past the overall end_date
-            #     interval_end = min(next_interval, end_date)
-            #     intervals.append((current.strftime('%Y-%m-%d'), interval_end.strftime('%Y-%m-%d')))
-            #     current = next_interval
-
-            # Provided date range strings
-            start_date_str = '2018-11-22T12:00:13Z'
+            start_date_str = '2018-07-10T11:02:44Z'
             end_date_str = '2025-02-25T08:56:13Z'
 
             # Remove the trailing 'Z' and convert to datetime objects
@@ -169,21 +145,20 @@ class CODataProcessor:
             print(f"Start date: {start_date}")
             print(f"End date: {end_date}")
 
-            # Generate weekly intervals
+            # Generate weekly intervals between start and end dates
             intervals = []
             current = start_date
             while current < end_date:
                 next_interval = current + timedelta(days=7)
-                # Ensure we don't exceed the overall end_date
                 interval_end = min(next_interval, end_date)
                 intervals.append((current.strftime('%Y-%m-%dT%H:%M:%S'), interval_end.strftime('%Y-%m-%dT%H:%M:%S')))
                 current = next_interval
 
-            # Example: print the generated intervals
+            # Print generated intervals (for debugging purposes)
             for start, end in intervals:
                 print(f"Interval: {start} to {end}")
 
-            # Load all districts from GeoJSON
+            # Load district geometries from GeoJSON
             districts = self._load_districts()
             print(f"Loaded {len(districts)} districts")
             
@@ -195,7 +170,7 @@ class CODataProcessor:
                 for district in districts:
                     for (interval_start, interval_end) in intervals:
                         future = executor.submit(
-                            self._get_co_data_for_interval, district, interval_start, interval_end
+                            self._get_o3_data_for_interval, district, interval_start, interval_end
                         )
                         futures.append(future)
                 
@@ -210,7 +185,7 @@ class CODataProcessor:
             print(f"Error in process_data: {str(e)}")
             return pd.DataFrame()
     
-    def export_to_csv(self, filename: str = 'datasets/co_measurements.csv'):
+    def export_to_csv(self, filename: str = 'datasets/o3_measurements.csv'):
         """Process data and export the results to a CSV file."""
         df = self.process_data()
         if not df.empty:
@@ -222,10 +197,10 @@ class CODataProcessor:
 # Example usage:
 if __name__ == "__main__":
     params = {
-        'start_date': '2020-01-01',
-        'end_date': '2021-01-01',  # Example: one month of data
+        'start_date': '2020-01-01T00:00:00Z',
+        'end_date': '2020-12-31T23:59:59Z',  # Adjust the dates as needed
         'geojson_path': '../boundaries/datasets/maharashtra_districts.geojson'
     }
     
-    processor = CODataProcessor(params)
+    processor = O3DataProcessor(params)
     processor.export_to_csv()
