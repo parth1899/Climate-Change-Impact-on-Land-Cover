@@ -137,7 +137,8 @@ def create_ozone_relationships(conn: Neo4jConnection):
     # Link each Ozone_Measurement to its Dataset.
     query1 = """
     MATCH (m:Ozone_Measurement)
-    MATCH (d:Dataset {dataset_id: m.dataset})
+    WHERE m.dataset CONTAINS "Sentinel-5P NRTI O3"
+    MATCH (d:Dataset {dataset_id: 'COPERNICUS/S5P/NRTI/L3_O3'})
     MERGE (m)-[:BELONGS_TO]->(d)
     """
     conn.query(query1)

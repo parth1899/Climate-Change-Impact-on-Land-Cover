@@ -110,9 +110,9 @@ def create_measurement_node(conn: Neo4jConnection, measurement: CO_Measurement):
 
 def create_measurement_to_dataset_relationship(conn: Neo4jConnection):
     query = """
-    MATCH (m:Ozone_Measurement)
-    WHERE m.dataset CONTAINS "Sentinel-5P NRTI O3"
-    MATCH (d:Dataset {dataset_id: 'COPERNICUS/S5P/NRTI/L3_O3'})
+    MATCH (m:CO_Measurement)
+    WHERE m.dataset CONTAINS "Sentinel-5P NRTI CO"
+    MATCH (d:Dataset {dataset_id: 'COPERNICUS/S5P/NRTI/L3_CO'})
     MERGE (m)-[:BELONGS_TO]->(d)
     """
     conn.query(query)

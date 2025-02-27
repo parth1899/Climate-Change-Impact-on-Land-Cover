@@ -4,5 +4,6 @@ Helper scripts for retrieving weekly atmospheric measurements (2018–2025) from
 
 - **Carbon Monoxide** (`carbon_monoxide.py`) – `COPERNICUS/S5P/NRTI/L3_CO`  
 - **Ozone** (`ozone.py`) – `COPERNICUS/S5P/NRTI/L3_O3`  
+- **Aerosol** (`aerosol.py`) – `COPERNICUS/S5P/NRTI/L3_AER_AI`
 
 Extracted data is saved as CSV files in the `datasets/` directory.

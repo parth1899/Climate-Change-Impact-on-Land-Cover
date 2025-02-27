@@ -32,6 +32,19 @@ class Ozone_Measurement:
     solar_zenith_angle: float
 
 @dataclass
+class Aerosol_AI_Measurement:
+    measurement_id: str
+    region: str
+    timestamp: str
+    dataset: str
+    absorbing_aerosol_index: float
+    sensor_altitude: float
+    sensor_azimuth_angle: float
+    sensor_zenith_angle: float
+    solar_azimuth_angle: float
+    solar_zenith_angle: float
+
+@dataclass
 class District:
     district_id: str
     name: str
