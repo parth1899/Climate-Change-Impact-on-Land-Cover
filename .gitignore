@@ -6,7 +6,6 @@ private_key.json
 *.geojson
 *.csv
 *.txt
-*.json
 *.node_modules
 server/node_modules
 react-frontend/node_modules
