@@ -1,5 +1,4 @@
 venv
-.gitignore
 .env
 __pycache__
 private_key.json
@@ -10,3 +9,4 @@ private_key.json
 *.json
 *.node_modules
 server/node_modules
+react-frontend/node_modules
