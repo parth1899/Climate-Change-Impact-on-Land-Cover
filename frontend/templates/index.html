@@ -1,61 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NO2 Concentration Maps</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <link rel="stylesheet" href="/static/CSS/style.css">
+  <meta charset="UTF-8">
+  <title>Ozone Map Viewer</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+    #map {
+      width: 100%;
+      height: 100%;
+    }
+    /* Floating control panel */
+    #controls {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      max-width: 220px;
+      font-size: 14px;
+    }
+    #controls label {
+      margin: 5px 0 3px;
+    }
+    #controls input, 
+    #controls select, 
+    #controls button {
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    /* Optional styling for play/pause area */
+    #playPauseBtn {
+      width: auto;
+    }
+    #timeDisplay {
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Map Visualizer</h1>
-        
-        <div class="input-section">
-            <div class="input-group">
-                <label for="region">Region:</label>
-                <input type="text" id="region" placeholder="Enter region name (e.g., Maharashtra)">
-            </div>
-            
-            <div class="input-group">
-                <label>Years:</label>
-                <div class="checkbox-group">
-                    <label>
-                        <input type="checkbox" name="years" value="2019"> 2019
-                    </label>
-                    <label>
-                        <input type="checkbox" name="years" value="2020"> 2020
-                    </label>
-                </div>
-            </div>
-            
-            <div class="input-group">
-                <label>Concentration Classes:</label>
-                <div class="checkbox-group">
-                    <label>
-                        <input type="checkbox" name="classes" value="low"> Low
-                    </label>
-                    <label>
-                        <input type="checkbox" name="classes" value="medium"> Medium
-                    </label>
-                    <label>
-                        <input type="checkbox" name="classes" value="high"> High
-                    </label>
-                </div>
-            </div>
-            
-            <button id="show-map-btn">Show Map</button>
-        </div>
-        
-        <div id="map-container">
-            <div id="map"></div>
-            <div id="legend-container"></div>
-        </div>
+  <div id="map"></div>
+  
+  <div id="controls">
+    <form id="mapForm">
+      <label for="dataset">Dataset:</label>
+      <select id="dataset">
+        <option value="Ozone">Ozone</option>
+        <!-- Additional datasets can be added here -->
+      </select>
+      
+      <label for="regionsInput">Regions (comma separated):</label>
+      <input type="text" id="regionsInput" placeholder="Pune,Ahmadnagar">
+      
+      <label for="startYear">Start Year:</label>
+      <input type="number" id="startYear" placeholder="2020">
+      
+      <label for="endYear">End Year:</label>
+      <input type="number" id="endYear" placeholder="2022">
+      
+      <button type="submit">Generate Maps</button>
+    </form>
+    
+    <div>
+      <label for="regionSelector">Select Regions (Ctrl+Click for multiple):</label>
+      <select id="regionSelector" multiple></select>
     </div>
-
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="/static/JS/api.js"></script>
-    <script src="/static/JS/map.js"></script>
-    <script src="/static/main.js"></script>
+    
+    <div>
+      <button id="playPauseBtn">Play</button>
+      <span id="timeDisplay"></span>
+    </div>
+  </div>
+  
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Main application script -->
+  <script type="module" src="../static/main.js"></script>
 </body>
 </html>
