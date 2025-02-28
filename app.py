@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
-from backend.map_helper.map_generator import generate_no2_maps
-from backend.data_processors.no2_data_processor import NO2DataProcessor
+from backend.map_helper.o3_map_generator import ozone_main
 
 app = Flask(__name__, 
             template_folder='frontend/templates',
@@ -9,35 +8,38 @@ app = Flask(__name__,
 
 CORS(app)
 
-@app.route('/generate_maps', methods=['POST'])
+@app.route('/api/generate_maps', methods=['POST'])
 def generate_maps():
+    #get the request data
     data = request.json
-    selected_years = data.get('selected_years', [])
-    selected_classes = data.get('selected_classes', [])
-    region_name = data.get('region_name', '')
-    geojson_path = 'boundaries/datasets/maharashtra_districts.geojson'
 
-    data_processor = NO2DataProcessor({
-        'years': selected_years,
-        'region': region_name,
-        'levels': selected_classes
+    dataset = data.get('dataset')
+    start_year = data.get('start_year')
+    end_year = data.get('end_year')
+    selected_regions = data.get('selected_regions')
+
+    try:
+        print(f"Generating maps for {dataset} from {start_year} to {end_year} for regions: {selected_regions}")
+
+        #generate the maps
+        #if-else statements based on datasets
+        if dataset == 'Ozone':
+            urls, stats, legends, geojson_data, selected_regions = ozone_main(selected_regions, start_year, end_year)
+
+        return jsonify({
+            'urls': urls,
+            'legends': legends,
+            'geojson_data': geojson_data,
+            'selected_regions': selected_regions,
+            'stats': stats
+        })
+    
+    except Exception as e:
+        print(f"Error generating maps: {str(e)}")
+        return jsonify({
+            'error': str(e)
         })
 
-    df = data_processor.process_data()
-
-    print(df)
-    
-    return "Success"
-    # try:
-    #     result = generate_no2_maps(
-    #         selected_years=selected_years, 
-    #         selected_classes=selected_classes,
-    #         region_name=region_name,
-    #         geojson_path=geojson_path
-    #     )
-    #     return jsonify(result)
-    # except Exception as e:
-    #     return jsonify({"error": str(e)}), 500
 
 @app.route('/')
 def index():
