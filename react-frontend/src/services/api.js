@@ -1,18 +1,37 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'http://127.0.0.1:5000/api';
-
-export const fetchMapData = async (region, years, classes) => {
-  try {
-    const response = await axios.post(`${API_BASE_URL}/maps/generate`, {
-      region_name: region,
-      selected_years: years,
-      selected_classes: classes
-    });
-
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching map data:', error);
-    throw error;
+export class APIHandler {
+  constructor(baseUrl = 'http://127.0.0.1:5000') {
+    this.baseUrl = baseUrl;
   }
-};
+
+  async generateMaps(
+    dataset,
+    startYear,
+    endYear,
+    regions
+  ) {
+    const url = `${this.baseUrl}/api/generate_maps`;
+    const payload = {
+      dataset,
+      start_year: startYear,
+      end_year: endYear,
+      selected_regions: regions
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error in generateMaps:', error);
+      throw error;
+    }
+  }
+}

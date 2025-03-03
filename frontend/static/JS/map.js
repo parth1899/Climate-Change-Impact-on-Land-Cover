@@ -1,7 +1,7 @@
 // map.js
 export class MapHandler {
     constructor() {
-      // Initialize Leaflet map centered over India.
+
       this.map = L.map('map').setView([20, 77], 5);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '© OpenStreetMap contributors'
