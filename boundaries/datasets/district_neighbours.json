@@ -1,0 +1,412 @@
+{
+    "Chhindwara": [
+        "Seoni",
+        "Amravati",
+        "Nagpur"
+    ],
+    "Betul": [
+        "Amravati"
+    ],
+    "Balaghat": [
+        "Rajnandgaon",
+        "Gondiya",
+        "Bhandara"
+    ],
+    "Barwani": [
+        "Alirajpur",
+        "Dhule",
+        "Nandurbar",
+        "Jalgaon"
+    ],
+    "Khargone (West Nimar)": [
+        "Jalgaon"
+    ],
+    "Seoni": [
+        "Chhindwara",
+        "Nagpur"
+    ],
+    "Khandwa (East Nimar)": [
+        "Burhanpur",
+        "Amravati"
+    ],
+    "Alirajpur": [
+        "Barwani",
+        "Nandurbar"
+    ],
+    "Burhanpur": [
+        "Khandwa (East Nimar)",
+        "Amravati",
+        "Buldana",
+        "Jalgaon"
+    ],
+    "Chhota Udaipur": [
+        "Narmada",
+        "Nandurbar"
+    ],
+    "Narmada": [
+        "Chhota Udaipur",
+        "Nandurbar"
+    ],
+    "The Dangs": [
+        "Tapi",
+        "Nashik",
+        "Dhule"
+    ],
+    "Navsari": [
+        "Valsad",
+        "Nashik"
+    ],
+    "Tapi": [
+        "The Dangs",
+        "Dhule",
+        "Nandurbar"
+    ],
+    "Valsad": [
+        "Navsari",
+        "Nashik",
+        "Palghar"
+    ],
+    "Dadra & Nagar Haveli": [
+        "Palghar"
+    ],
+    "North Goa": [
+        "Sindhudurg"
+    ],
+    "Uttar Bastar Kanker": [
+        "Narayanpur",
+        "Rajnandgaon",
+        "Gadchiroli"
+    ],
+    "Narayanpur": [
+        "Uttar Bastar Kanker",
+        "Bijapur",
+        "Gadchiroli"
+    ],
+    "Bijapur": [
+        "Solapur",
+        "Sangli"
+    ],
+    "Rajnandgaon": [
+        "Balaghat",
+        "Uttar Bastar Kanker",
+        "Gondiya",
+        "Gadchiroli"
+    ],
+    "Bidar": [
+        "Latur",
+        "Osmanabad",
+        "Nanded"
+    ],
+    "Gulbarga": [
+        "Solapur",
+        "Osmanabad"
+    ],
+    "Belgaum": [
+        "Sindhudurg",
+        "Kolhapur",
+        "Sangli"
+    ],
+    "Washim": [
+        "Akola",
+        "Yavatmal",
+        "Hingoli",
+        "Amravati",
+        "Buldana"
+    ],
+    "Ahmadnagar": [
+        "Solapur",
+        "Nashik",
+        "Osmanabad",
+        "Pune",
+        "Aurangabad",
+        "Bid",
+        "Thane"
+    ],
+    "Latur": [
+        "Bidar",
+        "Osmanabad",
+        "Parbhani",
+        "Nanded",
+        "Bid"
+    ],
+    "Solapur": [
+        "Bijapur",
+        "Gulbarga",
+        "Ahmadnagar",
+        "Osmanabad",
+        "Satara",
+        "Sangli",
+        "Pune"
+    ],
+    "Nashik": [
+        "The Dangs",
+        "Navsari",
+        "Valsad",
+        "Ahmadnagar",
+        "Dhule",
+        "Aurangabad",
+        "Jalgaon",
+        "Thane",
+        "Palghar"
+    ],
+    "Osmanabad": [
+        "Bidar",
+        "Gulbarga",
+        "Ahmadnagar",
+        "Latur",
+        "Solapur",
+        "Bid"
+    ],
+    "Sindhudurg": [
+        "North Goa",
+        "Belgaum",
+        "Kolhapur",
+        "Ratnagiri"
+    ],
+    "Kolhapur": [
+        "Belgaum",
+        "Sindhudurg",
+        "Sangli",
+        "Ratnagiri"
+    ],
+    "Chandrapur": [
+        "Yavatmal",
+        "Wardha",
+        "Gadchiroli",
+        "Bhandara",
+        "Nagpur",
+        "Adilabad",
+        "Komaram Bheem"
+    ],
+    "Akola": [
+        "Washim",
+        "Amravati",
+        "Buldana"
+    ],
+    "Parbhani": [
+        "Latur",
+        "Nanded",
+        "Hingoli",
+        "Bid",
+        "Jalna"
+    ],
+    "Yavatmal": [
+        "Washim",
+        "Chandrapur",
+        "Nanded",
+        "Hingoli",
+        "Amravati",
+        "Wardha",
+        "Adilabad"
+    ],
+    "Nanded": [
+        "Bidar",
+        "Latur",
+        "Parbhani",
+        "Yavatmal",
+        "Hingoli",
+        "Nizamabad",
+        "Adilabad",
+        "Nirmal",
+        "Kamareddy"
+    ],
+    "Dhule": [
+        "Barwani",
+        "The Dangs",
+        "Tapi",
+        "Nashik",
+        "Nandurbar",
+        "Jalgaon"
+    ],
+    "Satara": [
+        "Solapur",
+        "Sangli",
+        "Pune",
+        "Ratnagiri",
+        "Raigarh"
+    ],
+    "Sangli": [
+        "Bijapur",
+        "Belgaum",
+        "Solapur",
+        "Kolhapur",
+        "Satara",
+        "Ratnagiri"
+    ],
+    "Hingoli": [
+        "Washim",
+        "Parbhani",
+        "Yavatmal",
+        "Nanded",
+        "Buldana",
+        "Jalna"
+    ],
+    "Pune": [
+        "Ahmadnagar",
+        "Solapur",
+        "Satara",
+        "Raigarh",
+        "Thane"
+    ],
+    "Gondiya": [
+        "Balaghat",
+        "Rajnandgaon",
+        "Gadchiroli",
+        "Bhandara"
+    ],
+    "Amravati": [
+        "Chhindwara",
+        "Betul",
+        "Khandwa (East Nimar)",
+        "Burhanpur",
+        "Washim",
+        "Akola",
+        "Yavatmal",
+        "Wardha",
+        "Buldana",
+        "Nagpur"
+    ],
+    "Nandurbar": [
+        "Barwani",
+        "Alirajpur",
+        "Chhota Udaipur",
+        "Narmada",
+        "Tapi",
+        "Dhule"
+    ],
+    "Ratnagiri": [
+        "Sindhudurg",
+        "Kolhapur",
+        "Satara",
+        "Sangli",
+        "Raigarh"
+    ],
+    "Wardha": [
+        "Chandrapur",
+        "Yavatmal",
+        "Amravati",
+        "Nagpur"
+    ],
+    "Aurangabad": [
+        "Ahmadnagar",
+        "Nashik",
+        "Jalgaon",
+        "Bid",
+        "Jalna"
+    ],
+    "Buldana": [
+        "Burhanpur",
+        "Washim",
+        "Akola",
+        "Hingoli",
+        "Amravati",
+        "Jalgaon",
+        "Jalna"
+    ],
+    "Gadchiroli": [
+        "Uttar Bastar Kanker",
+        "Narayanpur",
+        "Bijapur",
+        "Rajnandgaon",
+        "Chandrapur",
+        "Gondiya",
+        "Bhandara",
+        "Mancherial",
+        "Komaram Bheem",
+        "Jayashankar"
+    ],
+    "Jalgaon": [
+        "Barwani",
+        "Khargone (West Nimar)",
+        "Burhanpur",
+        "Nashik",
+        "Dhule",
+        "Aurangabad",
+        "Buldana",
+        "Jalna"
+    ],
+    "Raigarh": [
+        "Satara",
+        "Pune",
+        "Ratnagiri",
+        "Thane"
+    ],
+    "Bhandara": [
+        "Balaghat",
+        "Chandrapur",
+        "Gondiya",
+        "Gadchiroli",
+        "Nagpur"
+    ],
+    "Bid": [
+        "Ahmadnagar",
+        "Latur",
+        "Osmanabad",
+        "Parbhani",
+        "Aurangabad",
+        "Jalna"
+    ],
+    "Jalna": [
+        "Parbhani",
+        "Hingoli",
+        "Aurangabad",
+        "Buldana",
+        "Jalgaon",
+        "Bid"
+    ],
+    "Thane": [
+        "Ahmadnagar",
+        "Nashik",
+        "Pune",
+        "Raigarh",
+        "Palghar",
+        "Mumbai Suburban"
+    ],
+    "Palghar": [
+        "Valsad",
+        "Dadra & Nagar Haveli",
+        "Nashik",
+        "Thane"
+    ],
+    "Mumbai": [
+        "Mumbai Suburban"
+    ],
+    "Mumbai Suburban": [
+        "Thane",
+        "Mumbai"
+    ],
+    "Nagpur": [
+        "Chhindwara",
+        "Seoni",
+        "Chandrapur",
+        "Amravati",
+        "Wardha",
+        "Bhandara"
+    ],
+    "Mancherial": [
+        "Gadchiroli"
+    ],
+    "Nizamabad": [
+        "Nanded"
+    ],
+    "Adilabad": [
+        "Chandrapur",
+        "Yavatmal",
+        "Nanded",
+        "Komaram Bheem"
+    ],
+    "Komaram Bheem": [
+        "Chandrapur",
+        "Gadchiroli",
+        "Adilabad"
+    ],
+    "Nirmal": [
+        "Nanded"
+    ],
+    "Kamareddy": [
+        "Nanded"
+    ],
+    "Jayashankar": [
+        "Gadchiroli"
+    ]
+}

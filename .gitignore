@@ -3,7 +3,6 @@ venv
 __pycache__
 private_key.json
 .vs
-*.geojson
 *.csv
 *.txt
 *.node_modules
