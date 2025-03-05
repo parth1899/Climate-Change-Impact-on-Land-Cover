@@ -30,7 +30,7 @@ class CODataProcessor:
             'TILE_SCALE': 4,
         }
         
-        self.GEOJSON_PATH = params.get('geojson_path', '../boundaries/datasets/maharashtra_districts.geojson')
+        self.GEOJSON_PATH = params.get('geojson_path', '../../boundaries/datasets/maharashtra_districts.geojson')
         
         # Define bands to extract
         self.BANDS = [
@@ -224,7 +224,7 @@ if __name__ == "__main__":
     params = {
         'start_date': '2020-01-01',
         'end_date': '2021-01-01',  # Example: one month of data
-        'geojson_path': '../boundaries/datasets/maharashtra_districts.geojson'
+        'geojson_path': '../../boundaries/datasets/maharashtra_districts.geojson'
     }
     
     processor = CODataProcessor(params)

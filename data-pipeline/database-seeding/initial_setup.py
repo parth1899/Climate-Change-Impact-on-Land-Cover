@@ -56,12 +56,12 @@ def main():
     conn = Neo4jConnection()
 
     # Create District nodes.
-    districts = load_districts("../boundaries/datasets/maharashtra_districts_details.csv")
+    districts = load_districts("../../boundaries/datasets/maharashtra_districts_details.csv")
     for district in districts:
         create_district_node(conn, district)
 
     # Create NEIGHBOR_OF relationships based on JSON data.
-    create_neighbour_relationships_from_json(conn, "../boundaries/datasets/district_neighbours.json")
+    create_neighbour_relationships_from_json(conn, "../../boundaries/datasets/district_neighbours.json")
 
     # Close the connection.
     conn.close()

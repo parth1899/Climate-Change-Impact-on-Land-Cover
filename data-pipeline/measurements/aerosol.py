@@ -29,7 +29,7 @@ class AERAIDataProcessor:
             'TILE_SCALE': 4,
         }
         
-        self.GEOJSON_PATH = params.get('geojson_path', '../boundaries/datasets/maharashtra_districts.geojson')
+        self.GEOJSON_PATH = params.get('geojson_path', '../../boundaries/datasets/maharashtra_districts.geojson')
         
         # Define bands to extract for the AER AI dataset
         self.BANDS = [
@@ -192,7 +192,7 @@ if __name__ == "__main__":
     params = {
         'start_date': '2018-07-10T11:17:44Z',
         'end_date': '2025-02-26T10:16:13Z',  # Adjust the dates as needed
-        'geojson_path': '../boundaries/datasets/maharashtra_districts.geojson'
+        'geojson_path': '../../boundaries/datasets/maharashtra_districts.geojson'
     }
     
     processor = AERAIDataProcessor(params)

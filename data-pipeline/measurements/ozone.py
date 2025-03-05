@@ -30,7 +30,7 @@ class O3DataProcessor:
             'TILE_SCALE': 4,
         }
         
-        self.GEOJSON_PATH = params.get('geojson_path', '../boundaries/datasets/maharashtra_districts.geojson')
+        self.GEOJSON_PATH = params.get('geojson_path', '../../boundaries/datasets/maharashtra_districts.geojson')
         
         # Define bands to extract for the O3 dataset
         self.BANDS = [
@@ -199,7 +199,7 @@ if __name__ == "__main__":
     params = {
         'start_date': '2020-01-01T00:00:00Z',
         'end_date': '2020-12-31T23:59:59Z',  # Adjust the dates as needed
-        'geojson_path': '../boundaries/datasets/maharashtra_districts.geojson'
+        'geojson_path': '../../boundaries/datasets/maharashtra_districts.geojson'
     }
     
     processor = O3DataProcessor(params)

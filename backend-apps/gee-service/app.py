@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
-from backend.map_helper.o3_map_generator import ozone_main
+from map_helper.o3_map_generator import ozone_main
 
 app = Flask(__name__, 
             template_folder='frontend/templates',
