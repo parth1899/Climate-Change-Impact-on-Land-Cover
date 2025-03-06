@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from map_helper.o3_map_generator import ozone_main
+from map_helper.esri_map_helper import landcover_main
 
 app = Flask(__name__, 
             template_folder='frontend/templates',
@@ -25,6 +26,10 @@ def generate_maps():
         #if-else statements based on datasets
         if dataset == 'Ozone':
             urls, stats, legends, geojson_data, selected_regions = ozone_main(selected_regions, start_year, end_year)
+            print(legends)
+        elif dataset == 'Land Cover':
+            urls, stats, legends, geojson_data, selected_regions = landcover_main(selected_regions, start_year, end_year)
+            print(legends)
 
         return jsonify({
             'urls': urls,

@@ -59,3 +59,20 @@ class Dataset:
     description: str
     temporal_coverage: str
     spatial_resolution: str
+
+
+@dataclass
+class LandCoverMeasurement:
+    measurement_id: str
+    region: str
+    timestamp: str  # This can store the year (e.g., "2017") or a full ISO date as needed.
+    dataset: str
+    Water: float
+    Trees: float
+    Flooded_Vegetation: float
+    Crops: float
+    Built_Area: float
+    Bare_Ground: float
+    Snow_Ice: float
+    Clouds: float
+    Rangeland: float
